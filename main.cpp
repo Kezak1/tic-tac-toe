@@ -85,11 +85,6 @@ int main() {
         "    |   |   ",
     };
 
-    clear_screen();
-    std::cout << "WELCOME TO tic-tac-toe by Kezak1\n";
-    print_coords_layout();
-    std::cout << "to start game enter 'run':\n\n";
-
     std::unordered_map<std::string, std::pair<int, int>> mp;
     std::unordered_set<std::string> st;
     mp["a1"] = {1, 2};
@@ -101,16 +96,34 @@ int main() {
     mp["c1"] = {5, 2};
     mp["c2"] = {5, 6};
     mp["c3"] = {5, 10};
-    
+
+    auto clear_board = [&]() {
+        st.clear();
+        for(int row = 1; row < ROWS; row += 2) {
+            for(int col = 2; col < COLS; col += 4) {
+                if(board[row][col] == 'X' || board[row][col] == 'O') {
+                    board[row][col] = ' ';
+                }
+            }
+        }
+    };
+
+    clear_screen();
+    std::cout << "WELCOME TO tic-tac-toe by Kezak1\n";
+    print_coords_layout();
+    std::cout << "to start game enter 'run':\n\n";
 
     while(true) {
+        
         std::cout << "command: ";
         std::string input;
         std::cin >> input;
 
         if(input == "run") {
-            int i = 0;
+            clear_board();
             render_board(board);
+
+            int i = 0;
             while(i < 9) {
                 char c = ((i & 1) ? 'O' : 'X');
                 std::cout << c << " to move: ";
@@ -151,8 +164,6 @@ int main() {
                 std::cout << "DRAW\n";
             }
 
-            std::cout << std::endl;
-            continue;
         } else if(input == "exit") {
             break;
         } else {
