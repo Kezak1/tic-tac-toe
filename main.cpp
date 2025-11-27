@@ -52,6 +52,7 @@ void render_board(std::string board[]) {
     clear_screen();
     std::cout << "+===========+\n";
     print_board(board);
+    std::cout << "+===========+\n";
 }
 
 void print_coords_layout() {
