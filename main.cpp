@@ -85,7 +85,8 @@ int main() {
         "    |   |   ",
     };
 
-    std::cout << "\nWELCOME TO tic-tac-toe by Kezak1\n";
+    clear_screen();
+    std::cout << "WELCOME TO tic-tac-toe by Kezak1\n";
     print_coords_layout();
     std::cout << "to start game enter 'run':\n\n";
 
@@ -116,6 +117,11 @@ int main() {
                 
                 std::string move;
                 std::cin >> move;
+
+                if(move == "exit") {
+                    clear_screen();
+                    break;
+                }
 
                 if(!mp.count(move)) {
                     std::cout << "error: invalid coordinate" << std::endl;
